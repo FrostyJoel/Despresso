@@ -7,6 +7,8 @@ public class Slash : ScriptableObject
 {
     public List<Slash> combos;
 
+    public float animTimer, maxTimer;
+
     public int damage;
 
     public AttackInput attackInput;
@@ -16,6 +18,8 @@ public class Slash : ScriptableObject
         comboHolder.curSlash = slash;
 
         comboHolder.inCombo = true;
+
+        comboHolder.time = 0;
 
         Debug.Log(comboHolder.curSlash.damage);
     }

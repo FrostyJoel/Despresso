@@ -194,14 +194,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e4954c03a05b649b5cb2da73066332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightSlashInput: 
-  heavySlashInput: 
-  curSlash: {fileID: 0}
-  lightSlash: {fileID: 0}
-  heavySlash: {fileID: 0}
+  time: 0
   inCombo: 0
+  ableToAttack: 1
+  curSlash: {fileID: 0}
+  lightSlash: {fileID: 11400000, guid: 1a15312e5abd95b428189ddd3eabe0b5, type: 2}
+  heavySlash: {fileID: 11400000, guid: 2ef1b3e7c3c7046469c4f0f57d2ccfc5, type: 2}
+  lightSlashInput: Fire1
+  heavySlashInput: Fire2
   lightAttackInputPressed: 0
-  heavyAttackInputPressed: 0
+  heavyAttackInputPressed: 1
 --- !u!1 &1427651490
 GameObject:
   m_ObjectHideFlags: 0

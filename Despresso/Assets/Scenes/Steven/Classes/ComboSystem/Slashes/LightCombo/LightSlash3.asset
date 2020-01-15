@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: LightSlash3
   m_EditorClassIdentifier: 
   combos: []
+  animTimer: 0.2
+  maxTimer: 2
   damage: 15
   attackInput: 0

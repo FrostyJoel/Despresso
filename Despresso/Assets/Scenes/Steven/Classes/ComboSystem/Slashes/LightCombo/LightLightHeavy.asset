@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: LightLightHeavy
   m_EditorClassIdentifier: 
   combos: []
+  animTimer: 0.5
+  maxTimer: 3
   damage: 666
   attackInput: 1

@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combos:
   - {fileID: 11400000, guid: d3c8204923051784da1a3bca2e484bf9, type: 2}
+  animTimer: 0.2
+  maxTimer: 2
   damage: 5
   attackInput: 0

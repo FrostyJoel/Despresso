@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: HeavySlash1
   m_EditorClassIdentifier: 
   combos: []
+  animTimer: 1
+  maxTimer: 3
   damage: 30
   attackInput: 1
