@@ -202,8 +202,7 @@ MonoBehaviour:
   heavySlash: {fileID: 11400000, guid: 2ef1b3e7c3c7046469c4f0f57d2ccfc5, type: 2}
   lightSlashInput: Fire1
   heavySlashInput: Fire2
-  lightAttackInputPressed: 0
-  heavyAttackInputPressed: 1
+  directionalInput: 5
 --- !u!1 &1427651490
 GameObject:
   m_ObjectHideFlags: 0

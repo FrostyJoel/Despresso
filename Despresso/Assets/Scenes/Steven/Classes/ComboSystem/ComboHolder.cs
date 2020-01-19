@@ -19,8 +19,9 @@ public class ComboHolder : MonoBehaviour
     public void Update()
     {
         InputCheck();
+        DirectionalInputCheck();
 
-        if(curSlash != null && inCombo)
+        if (curSlash != null && inCombo)
         {
             Timer(curSlash.animTimer, curSlash.maxTimer);
         }
@@ -28,21 +29,6 @@ public class ComboHolder : MonoBehaviour
 
     public void InputCheck()
     {
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            directionalInput = DirectionalInput.forward;
-        }
-
-        if(Input.GetAxis("Vertical") < 0)
-        {
-            directionalInput = DirectionalInput.back;
-        }
-
-        if(Input.GetAxis("Vertical") == 0)
-        {
-            directionalInput = DirectionalInput.neutral;
-        }
-
         if (ableToAttack)
         {
             if (inCombo)
@@ -68,6 +54,34 @@ public class ComboHolder : MonoBehaviour
                     NewAttack(heavySlash);
                 }
             }
+        }
+    }
+
+    public void DirectionalInputCheck()
+    {
+        if (Input.GetAxis("Vertical") > 0)
+        {
+            directionalInput = DirectionalInput.forward;
+        }
+
+        if (Input.GetAxis("Vertical") < 0)
+        {
+            directionalInput = DirectionalInput.back;
+        }
+
+        if(Input.GetAxis("Horizontal") > 0)
+        {
+            directionalInput = DirectionalInput.right;
+        }
+
+        if(Input.GetAxis("Horizontal") < 0)
+        {
+            directionalInput = DirectionalInput.left;
+        }
+
+        if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        {
+            directionalInput = DirectionalInput.neutral;
         }
     }
 
@@ -109,8 +123,10 @@ public class ComboHolder : MonoBehaviour
 
     public enum DirectionalInput
     {
+        none,
+        neutral,
         forward,
         back,
-        neutral,
-        none
+        left,
+        right
     }
