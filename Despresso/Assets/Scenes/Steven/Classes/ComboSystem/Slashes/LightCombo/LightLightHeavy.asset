@@ -17,3 +17,4 @@ MonoBehaviour:
   maxTimer: 3
   damage: 666
   attackInput: 1
+  directionalInput: 3

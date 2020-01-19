@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6275a5e901004994ca85d5edf08cd1b9, type: 3}
   m_Name: HeavySlash1
   m_EditorClassIdentifier: 
-  combos: []
+  combos:
+  - {fileID: 11400000, guid: 1bc076f4a0bb2b54883e2e54e13ebe2a, type: 2}
   animTimer: 1
   maxTimer: 3
   damage: 30
   attackInput: 1
+  directionalInput: 3

@@ -14,8 +14,7 @@ public class ComboHolder : MonoBehaviour
     public Slash heavySlash;
     public string lightSlashInput;
     public string heavySlashInput;
-    public AttackInput lightAttackInputPressed;
-    public AttackInput heavyAttackInputPressed;
+    public DirectionalInput directionalInput;
 
     public void Update()
     {
@@ -29,17 +28,32 @@ public class ComboHolder : MonoBehaviour
 
     public void InputCheck()
     {
+        if (Input.GetAxis("Vertical") > 0)
+        {
+            directionalInput = DirectionalInput.forward;
+        }
+
+        if(Input.GetAxis("Vertical") < 0)
+        {
+            directionalInput = DirectionalInput.back;
+        }
+
+        if(Input.GetAxis("Vertical") == 0)
+        {
+            directionalInput = DirectionalInput.neutral;
+        }
+
         if (ableToAttack)
         {
             if (inCombo)
             {
                 if (Input.GetButtonDown(lightSlashInput))
-                {    
-                    curSlash.ContinueAttack(lightAttackInputPressed, this, lightSlash);
+                {
+                    curSlash.ContinueAttack(this, lightSlash, AttackInput.lightAttack, directionalInput);
                 }
                 else if (Input.GetButtonDown(heavySlashInput))
                 {
-                    curSlash.ContinueAttack(heavyAttackInputPressed, this, heavySlash);
+                    curSlash.ContinueAttack(this, heavySlash, AttackInput.heavyAttack, directionalInput);
                 }
             }
             else
@@ -91,4 +105,12 @@ public class ComboHolder : MonoBehaviour
     {
         lightAttack,
         heavyAttack
+    }
+
+    public enum DirectionalInput
+    {
+        forward,
+        back,
+        neutral,
+        none
     }
