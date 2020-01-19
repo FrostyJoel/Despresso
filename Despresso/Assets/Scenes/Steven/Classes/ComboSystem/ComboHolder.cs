@@ -9,6 +9,8 @@ public class ComboHolder : MonoBehaviour
     public bool inCombo;
     public bool ableToAttack;
 
+    public DoesAttack doesAttack;
+
     public Slash curSlash;
     public Slash lightSlash;
     public Slash heavySlash;
@@ -19,12 +21,20 @@ public class ComboHolder : MonoBehaviour
     public void Update()
     {
         InputCheck();
+
         DirectionalInputCheck();
 
         if (curSlash != null && inCombo)
         {
             Timer(curSlash.animTimer, curSlash.maxTimer);
         }
+    }
+
+    public void NewAttack(Slash slash)
+    {
+        curSlash = slash;
+
+        slash.NewAttack(this, slash);
     }
 
     public void InputCheck()
@@ -85,12 +95,6 @@ public class ComboHolder : MonoBehaviour
         }
     }
 
-    public void NewAttack(Slash slash)
-    {
-        curSlash = slash;
-
-        slash.NewAttack(this, slash);
-    }
 
     public void Timer(float animTimer, float maxTimer)
     {
@@ -100,11 +104,14 @@ public class ComboHolder : MonoBehaviour
 
             time += Time.deltaTime;
 
-            if (time > animTimer && time < maxTimer)
+            if (time > animTimer)
             {
+                if(doesAttack.didAttack == false)
+                {
+                    doesAttack.DoDamage(curSlash);
+                }
                 ableToAttack = true;
             }
-            else ableToAttack = false;
         }
         else
         {

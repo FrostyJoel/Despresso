@@ -21,6 +21,8 @@ public class Slash : ScriptableObject
 
         comboHolder.inCombo = true;
 
+        comboHolder.doesAttack.didAttack = false;
+
         comboHolder.time = 0;
 
         Debug.Log(comboHolder.curSlash.damage);
