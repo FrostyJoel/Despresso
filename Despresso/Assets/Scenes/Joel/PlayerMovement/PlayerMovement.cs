@@ -1,44 +1,49 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Player Movement")]
-    
     public float moveSpeed;
-    Vector3 movePlayer;
-    float ver, hor;
+    private float ver, hor;
+    private bool moveRequest;
+    private Vector3 movePlayer;
 
     [Header("Player Rotation")]
-    Vector3 walkDirection = new Vector3();
     public float rotationSpeed;
 
     [Header("Player Dash")]
-    public float startDashTime;
     public float dashSpeed;
-    
+    private float startDashTime = 0.1f;
+    private float dashTime;
+    private Vector3 walkDirection = new Vector3();
+    private bool dashRequest;
+
+    [Header("Camera Settings")]
+    public float mouseXSensitivity;
+    public float mouseYSensitivity;
+    public float controllerXSensitivity;
+    public float controllerYSensitivity;
+    public float rotateSpeed;
+    public float xMinClamp, xMaxClamp;
+    public float minZoom, maxZoom;
+
     [Header("Camera")]
-   
     public GameObject cam;
     public GameObject actualCam;
     
-    public float rotateSpeed;
-    Vector3 camX,camY;
-    public float xMinClamp, xMaxClamp;
-    public float minZoom, maxZoom;
+    private Vector3 camX,camY;
+    private float cHor, cVer;
+    private bool camRequest;
 
     [Header("Misc")]
     public LayerMask groundMask;
     public Transform offset;
     public GameObject actualPlayer;
+    private RaycastHit hit;
 
-    float dashTime;
-    float cHor, cVer;
-    RaycastHit hit;
-    bool moveRequest;
-    bool dashRequest;
-    bool camRequest;
 
     private void Awake()
     {
@@ -62,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
         if (camRequest)
         {
             cam.transform.Rotate(camX * Time.deltaTime * rotateSpeed, Space.Self);
@@ -144,16 +148,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetJoystickNames().Length > 0)
         {
-            cHor = Input.GetAxis("RotateHor");
-            cVer = Input.GetAxis("RotateVer");
+            cHor = Input.GetAxis("RotateHor") * controllerXSensitivity;
+            cVer = Input.GetAxis("RotateVer") * controllerYSensitivity;
         }
         else
         {
-            cHor = Input.GetAxis("Mouse X");
-            cVer = Input.GetAxis("Mouse Y");
+            cHor = Input.GetAxis("Mouse X") * mouseXSensitivity;
+            cVer = Input.GetAxis("Mouse Y") * mouseYSensitivity;
         }
-        camY.y = cHor;
-        camX.x = -cVer;
+        camY.y = -cHor;
+        camX.x = cVer;
     }
 
     public void CameraClamp()
